@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
-class MahasiswaController extends Controller
+
+class DosenController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
         $query = User::query();
@@ -19,32 +23,30 @@ class MahasiswaController extends Controller
         if (!empty($request->name)) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }
-        $mahasiswa = $query->paginate(5);
-        return view('mahasiswa.index', compact('mahasiswa'));
+        $dosen = $query->paginate(5);
+        return view('dosen.index', compact('dosen'));
     }
 
     public function store(Request $request)
     {
         $id = $request->id;
-        $npm = $request->npm;
+        $nip = $request->nip;
         $name = $request->name;
         $email = $request->email;
-        $prodi = $request->prodi;
         $no_hp = $request->no_hp;
         $password = Hash::make('test1234');
         // $users = DB::table('users')->where('id', $id)->first();
         if ($request->hasFile('foto')) {
-            $foto = $npm . "." . $request->file('foto')->getClientOriginalExtension();
+            $foto = $nip . "." . $request->file('foto')->getClientOriginalExtension();
         } else {
             $foto = null;
         }
 
         try {
             $data = [
-                'npm' => $npm,
+                'nip' => $nip,
                 'name' => $name,
                 'email' => $email,
-                'prodi' => $prodi,
                 'no_hp' => $no_hp,
                 'password' => $password,
                 'foto' => $foto
@@ -52,7 +54,7 @@ class MahasiswaController extends Controller
             $simpan = DB::table('users')->insert($data);
             if ($simpan) {
                 if ($request->hasFile('foto')) {
-                    $folderPath = "public/uploads/mahasiswa/";
+                    $folderPath = "public/uploads/dosen/";
                     $request->file('foto')->storeAs($folderPath, $foto);
                 }
                 return Redirect::back()->with(['success' => 'Data Berhasil Disimpan']);
@@ -63,42 +65,43 @@ class MahasiswaController extends Controller
         }
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Request $request)
     {
         $id = $request->id;
         $users = DB::table('users')->where('id', $id)->first();
-        return view('mahasiswa.edit', compact('users'));
+        return view('dosen.edit', compact('users'));
     }
 
     public function update($id, Request $request)
     {
         $id = $request->id;
-        $npm = $request->npm;
+        $nip = $request->nip;
         $name = $request->name;
         $email = $request->email;
-        $prodi = $request->prodi;
         $no_hp = $request->no_hp;
         $old_foto = $request->old_foto;
         if ($request->hasFile('foto')) {
-            $foto = $npm . "." . $request->file('foto')->getClientOriginalExtension();
+            $foto = $nip . "." . $request->file('foto')->getClientOriginalExtension();
         } else {
             $foto = $old_foto;
         }
 
         try {
             $data = [
-                'npm' => $npm,
+                'nip' => $nip,
                 'name' => $name,
                 'email' => $email,
-                'prodi' => $prodi,
                 'no_hp' => $no_hp,
                 'foto' => $foto
             ];
             $update = DB::table('users')->where('id', $id)->update($data);
             if ($update) {
                 if ($request->hasFile('foto')) {
-                    $folderPath = "public/uploads/mahasiswa/";
-                    $folderPathOld = "public/uploads/mahasiswa/" . $old_foto;
+                    $folderPath = "public/uploads/dosen/";
+                    $folderPathOld = "public/uploads/dosen/" . $old_foto;
                     Storage::delete($folderPathOld);
                     $request->file('foto')->storeAs($folderPath, $foto);
                 }

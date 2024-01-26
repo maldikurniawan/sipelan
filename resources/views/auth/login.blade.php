@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Login Mahasiswa</title>
+    <title>Login Dosen</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="bootstrap 4, mobile template, cordova, phonegap, mobile, html" />
     <link rel="icon" type="image/png" href="{{ asset('assets/img/unila.png') }}" sizes="32x32">
@@ -32,7 +32,7 @@
                 <img src="{{ asset('assets/img/login_vector.jpg') }}" alt="image" class="form-image">
             </div>
             <div class="section mt-1">
-                <h1>SIASMA</h1>
+                <h1>SIPELAN</h1>
                 <h4>Silahkan Login</h4>
             </div>
             <div class="section mt-1 mb-5">

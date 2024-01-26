@@ -6,7 +6,7 @@
                 <div class="col">
                     <!-- Page pre-title -->
                     <h2 class="page-title">
-                        Data Mahasiswa
+                        Data Dosen
                     </h2>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <a href="#" class="btn btn-primary" id="tambahMahasiswa">
+                                    <a href="#" class="btn btn-primary" id="tambahDosen">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus"
                                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                             stroke="currentColor" fill="none" stroke-linecap="round"
@@ -50,12 +50,12 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-12">
-                                    <form action="/mahasiswa" method="GET">
+                                    <form action="/dosen" method="GET">
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <input type="text" name="name" value="{{ Request('name') }}"
-                                                        class="form-control" placeholder="Nama Mahasiswa">
+                                                        class="form-control" placeholder="Nama Dosen">
                                                 </div>
                                             </div>
                                             <div class="col-2">
@@ -84,24 +84,22 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>NPM</th>
+                                                <th>nip</th>
                                                 <th>Nama</th>
-                                                <th>Prodi</th>
                                                 <th>No. HP</th>
                                                 <th>Foto</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($mahasiswa as $d)
+                                            @foreach ($dosen as $d)
                                                 @php
-                                                    $path = Storage::url('uploads/mahasiswa/' . $d->foto);
+                                                    $path = Storage::url('uploads/dosen/' . $d->foto);
                                                 @endphp
                                                 <tr>
-                                                    <td>{{ $loop->iteration + $mahasiswa->firstItem() - 1 }}</td>
-                                                    <td>{{ $d->npm }}</td>
+                                                    <td>{{ $loop->iteration + $dosen->firstItem() - 1 }}</td>
+                                                    <td>{{ $d->nip }}</td>
                                                     <td>{{ $d->name }}</td>
-                                                    <td>{{ $d->prodi }}</td>
                                                     <td>{{ $d->no_hp }}</td>
                                                     <td>
                                                         @if (empty($d->foto))
@@ -113,7 +111,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="btn-group">
-                                                            <form action="/mahasiswa/{{ $d->id }}/delete"
+                                                            <form action="/dosen/{{ $d->id }}/delete"
                                                                 style="margin-left:5px" method="POST">
                                                                 @csrf
                                                                 <a href="#" class="edit btn btn-warning btn-sm"
@@ -158,7 +156,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{ $mahasiswa->links('vendor.pagination.bootstrap-5') }}
+                                    {{ $dosen->links('vendor.pagination.bootstrap-5') }}
                                 </div>
                             </div>
 
@@ -169,15 +167,15 @@
         </div>
     </div>
     {{-- Modal Store --}}
-    <div class="modal modal-blur fade" id="modal-inputmahasiswa" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal modal-blur fade" id="modal-inputdosen" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Mahasiswa</h5>
+                    <h5 class="modal-title">Tambah Data Dosen</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/mahasiswa/store" method="POST" id="frmsiswa" enctype="multipart/form-data">
+                    <form action="/dosen/store" method="POST" id="frmsiswa" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -198,8 +196,8 @@
                                             <path d="M19 11l0 2" />
                                         </svg>
                                     </span>
-                                    <input type="text" value="" id="npm" name="npm"
-                                        class="form-control" placeholder="NPM">
+                                    <input type="text" value="" id="nip" name="nip"
+                                        class="form-control" placeholder="nip">
                                 </div>
                             </div>
                         </div>
@@ -236,27 +234,6 @@
                                     </span>
                                     <input type="email" value="" id="email" name="email"
                                         class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="input-icon mb-3">
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book"
-                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
-                                            <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
-                                            <path d="M3 6l0 13" />
-                                            <path d="M12 6l0 13" />
-                                            <path d="M21 6l0 13" />
-                                        </svg>
-                                    </span>
-                                    <input type="text" value="" id="prodi" name="prodi"
-                                        class="form-control" placeholder="Prodi">
                                 </div>
                             </div>
                         </div>
@@ -310,11 +287,11 @@
     </div>
 
     {{-- Modal Edit --}}
-    <div class="modal modal-blur fade" id="modal-editmahasiswa" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal modal-blur fade" id="modal-editdosen" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Data Mahasiswa</h5>
+                    <h5 class="modal-title">Edit Data Dosen</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="loadeditform">
@@ -329,15 +306,15 @@
 @push('myscript')
     <script>
         $(function() {
-            $("#tambahMahasiswa").click(function() {
-                $("#modal-inputmahasiswa").modal("show");
+            $("#tambahDosen").click(function() {
+                $("#modal-inputdosen").modal("show");
             });
 
             $(".edit").click(function() {
                 var id = $(this).attr('id');
                 $.ajax({
                     type: 'POST',
-                    url: '/mahasiswa/edit',
+                    url: '/dosen/edit',
                     cache: false,
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -347,7 +324,7 @@
                         $("#loadeditform").html(respond);
                     }
                 });
-                $("#modal-editmahasiswa").modal("show");
+                $("#modal-editdosen").modal("show");
             });
 
             $(".delete-confirm").click(function(e) {
@@ -374,19 +351,18 @@
             });
 
             $("#frmsiswa").submit(function() {
-                var npm = $("#npm").val();
+                var nip = $("#nip").val();
                 var name = $("#name").val();
-                var prodi = $("#prodi").val();
                 var no_hp = $("#no_hp").val();
-                if (npm == "") {
-                    // alert('NPM Harus Diisi!');
+                if (nip == "") {
+                    // alert('nip Harus Diisi!');
                     Swal.fire({
                         title: 'Warning!',
-                        text: 'NPM Harus Diisi!',
+                        text: 'nip Harus Diisi!',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
-                    $("#npm").focus();
+                    $("#nip").focus();
                     return false;
                 } else if (name == "") {
                     Swal.fire({
@@ -405,15 +381,6 @@
                         confirmButtonText: 'OK'
                     })
                     $("#email").focus();
-                    return false;
-                } else if (prodi == "") {
-                    Swal.fire({
-                        title: 'Warning!',
-                        text: 'Prodi Harus Diisi!',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                    $("#prodi").focus();
                     return false;
                 } else if (no_hp == "") {
                     Swal.fire({

@@ -30,7 +30,6 @@
                     {{ $messageerror }}
                 </div>
             @endif
-
             @error('foto')
                 <div class="alert alert-warning">
                     <p>{{ $message }}</p>
@@ -38,7 +37,7 @@
             @enderror
         </div>
     </div>
-    <form action="/presensi/{{ $users->id }}/updateProfile" method="POST" enctype="multipart/form-data">
+    <form action="/kuliah/{{ $users->id }}/updateProfile" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col">
             <div class="form-group boxed">
@@ -49,14 +48,8 @@
             </div>
             <div class="form-group boxed">
                 <div class="input-wrapper">
-                    <input type="text" class="form-control" value="{{ $users->npm }}" name="npm" placeholder="NPM"
+                    <input type="text" class="form-control" value="{{ $users->nip }}" name="nip" placeholder="nip"
                         autocomplete="off">
-                </div>
-            </div>
-            <div class="form-group boxed">
-                <div class="input-wrapper">
-                    <input type="text" class="form-control" value="{{ $users->prodi }}" name="prodi"
-                        placeholder="Prodi" autocomplete="off">
                 </div>
             </div>
             <div class="form-group boxed">

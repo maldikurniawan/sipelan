@@ -24,20 +24,18 @@
         </form>
         <div id="user-detail">
             <div class="avatar">
-                {{-- @if (!empty(Auth::guard()->user()->foto))
+                @if (!empty(Auth::guard()->user()->foto))
                     @php
-                        $path = Storage::url('uploads/mahasiswa/' . Auth::guard()->user()->foto);
+                        $path = Storage::url('public/uploads/dosen/' . Auth::guard()->user()->foto);
                     @endphp
                     <img src="{{ url($path) }}" alt="avatar" class="imaged w64 rounded" style="height:60px">
                 @else
                     <img src="assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
-                @endif --}}
-                <img src="assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+                @endif
             </div>
             <div id="user-info">
                 <h3 id="user-name">{{ Auth::guard()->user()->name }}</h3>
-                {{-- <span id="user-prodi">{{ Auth::guard()->user()->npm }}</span><br> --}}
-                <span id="user-prodi">2015061071</span><br>
+                <span id="user-prodi">{{ Auth::guard()->user()->nip }}</span><br>
             </div>
         </div>
     </div>
@@ -58,28 +56,28 @@
                     </div>
                     <div class="item-menu text-center">
                         <div class="menu-icon">
-                            <a href="{{ url('presensi/izin') }}" class="danger" style="font-size: 40px;">
+                            <a href="#" class="danger" style="font-size: 40px;">
+                                <ion-icon name="document"></ion-icon>
+                            </a>
+                        </div>
+                        <div class="menu-name">
+                            <span class="text-center">Rekap</span>
+                        </div>
+                    </div>
+                    <div class="item-menu text-center">
+                        <div class="menu-icon">
+                            <a href="#" class="warning" style="font-size: 40px;">
                                 <ion-icon name="calendar"></ion-icon>
                             </a>
                         </div>
                         <div class="menu-name">
-                            <span class="text-center">Izin</span>
+                            <span class="text-center">Jadwal</span>
                         </div>
                     </div>
                     <div class="item-menu text-center">
                         <div class="menu-icon">
-                            <a href="{{ url('presensi/histori') }}" class="warning" style="font-size: 40px;">
-                                <ion-icon name="desktop"></ion-icon>
-                            </a>
-                        </div>
-                        <div class="menu-name">
-                            <span class="text-center">Histori</span>
-                        </div>
-                    </div>
-                    <div class="item-menu text-center">
-                        <div class="menu-icon">
-                            <a href="{{ url('presensi/create') }}" class="orange" style="font-size: 40px;">
-                                <ion-icon name="camera"></ion-icon>
+                            <a href="#" class="orange" style="font-size: 40px;">
+                                <ion-icon name="book"></ion-icon>
                             </a>
                         </div>
                         <div class="menu-name">

@@ -1,4 +1,4 @@
-<form action="/mahasiswa/{{ $users->id }}/update" method="POST" id="frmsiswa" enctype="multipart/form-data">
+<form action="/dosen/{{ $users->id }}/update" method="POST" id="frmdosen" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
@@ -18,8 +18,8 @@
                         <path d="M19 11l0 2" />
                     </svg>
                 </span>
-                <input type="text" value="{{ $users->npm }}" id="npm" name="npm" class="form-control"
-                    placeholder="NPM">
+                <input type="text" value="{{ $users->nip }}" id="nip" name="nip" class="form-control"
+                    placeholder="NIP">
             </div>
         </div>
     </div>
@@ -54,26 +54,6 @@
                 </span>
                 <input type="email" value="{{ $users->email }}" id="email" name="email" class="form-control"
                     placeholder="Email">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="input-icon mb-3">
-                <span class="input-icon-addon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="24"
-                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
-                        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
-                        <path d="M3 6l0 13" />
-                        <path d="M12 6l0 13" />
-                        <path d="M21 6l0 13" />
-                    </svg>
-                </span>
-                <input type="text" value="{{ $users->prodi }}" id="prodi" name="prodi" class="form-control"
-                    placeholder="Prodi">
             </div>
         </div>
     </div>
