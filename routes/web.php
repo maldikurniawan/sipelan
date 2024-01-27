@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     // Mata Kuliah
     Route::get('matkul', [KuliahController::class, 'matkul']);
     Route::get('/matkul/{id}/pertemuan', [KuliahController::class, 'pertemuan']);
+    Route::get('/pertemuan/{id}/detail', [KuliahController::class, 'detail']);
+    Route::get('modul', [KuliahController::class, 'modul']);
+    Route::get('penilaian', [KuliahController::class, 'penilaian']);
 });
 
 Route::middleware(['auth:admin'])->group(function () {

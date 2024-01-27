@@ -75,6 +75,22 @@ class KuliahController extends Controller
 
     public function pertemuan()
     {
-        return view('kuliah.pertemuan');
+        $pertemuan = DB::table('pertemuan')->orderBy('nama_pertemuan')->get();
+        return view('kuliah.pertemuan', compact('pertemuan'));
+    }
+
+    public function detail()
+    {
+        return view('kuliah.detail');
+    }
+
+    public function modul()
+    {
+        return view('kuliah.modul');
+    }
+
+    public function penilaian()
+    {
+        return view('kuliah.penilaian');
     }
 }

@@ -13,21 +13,13 @@
     <!-- * App Header -->
 @endsection
 @section('content')
-    <style>
-        .historicontent {
-            display: flex;
-        }
-
-        .datapresensi {
-            margin-left: 10px;
-        }
-    </style>
     <div class="row" style="margin-top:70px">
         <div class="col">
             @foreach ($matkul as $d)
                 <div class="card mb-2">
                     <div class="card-body">
-                        <a href="/matkul/{{ $d->id }}/pertemuan" class="btn btn-primary w-100">{{ $d->nama_matkul }}</a>
+                        <a href="/matkul/{{ $d->id }}/pertemuan"
+                            class="btn btn-primary w-100">{{ $d->nama_matkul }}</a>
                     </div>
                 </div>
             @endforeach
