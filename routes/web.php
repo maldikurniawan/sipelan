@@ -39,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     // Edit Profile
     Route::get('editProfile', [KuliahController::class, 'editProfile']);
     Route::post('/kuliah/{id}/updateProfile', [KuliahController::class, 'updateProfile']);
+
+    // Mata Kuliah
+    Route::get('matkul', [KuliahController::class, 'matkul']);
+    Route::get('/matkul/{id}/pertemuan', [KuliahController::class, 'pertemuan']);
 });
 
 Route::middleware(['auth:admin'])->group(function () {

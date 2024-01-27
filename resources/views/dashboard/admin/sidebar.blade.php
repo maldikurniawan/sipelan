@@ -167,7 +167,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Rekap Presensi
+                            Rekap Perkuliahan
                         </span>
                     </a>
                 </li>

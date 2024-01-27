@@ -1055,7 +1055,7 @@ button:focus {
 }
 
 .mb-5 {
-    margin-bottom: 40px !important;
+    margin-bottom: 70px !important;
 }
 
 .ml-0 {
@@ -7943,7 +7943,6 @@ body.dark-mode-active .cart-item .cart-item-footer {
 
 .presencecontent {
     display: flex;
-    justify-content: space-evenly;
 }
 
 .gradasigreen {
@@ -7971,6 +7970,7 @@ body.dark-mode-active .cart-item .cart-item-footer {
 .presencetitle {
     color: white;
     font-weight: 600;
+    margin-top: 5px;
 }
 
 .rekappresencetitle {

@@ -12,7 +12,7 @@
             <strong>Jadwal</strong>
         </div>
     </a>
-    <a href="#" class="item">
+    <a href="/matkul" class="item">
         <div class="col">
             <div class="action-button large">
                 <ion-icon name="book" role="img" class="md hydrated" aria-label="add outline"></ion-icon>

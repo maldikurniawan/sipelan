@@ -66,4 +66,15 @@ class KuliahController extends Controller
             return Redirect::back()->with(['error' => 'Data Gagal Di Update']);
         }
     }
+
+    public function matkul()
+    {
+        $matkul = DB::table('matkul')->orderBy('nama_matkul')->get();
+        return view('kuliah.matkul', compact('matkul'));
+    }
+
+    public function pertemuan()
+    {
+        return view('kuliah.pertemuan');
+    }
 }
