@@ -48,7 +48,7 @@
             </div>
             <div class="form-group boxed">
                 <div class="input-wrapper">
-                    <input type="text" class="form-control" value="{{ $users->nip }}" name="nip" placeholder="nip"
+                    <input type="text" class="form-control" value="{{ $users->nip }}" name="nip" placeholder="NIP"
                         autocomplete="off">
                 </div>
             </div>

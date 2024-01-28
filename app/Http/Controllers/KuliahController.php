@@ -69,13 +69,17 @@ class KuliahController extends Controller
 
     public function matkul()
     {
-        $matkul = DB::table('matkul')->orderBy('nama_matkul')->get();
+        $matkul = DB::table('matkul')->orderBy('id')->get();
         return view('kuliah.matkul', compact('matkul'));
     }
 
-    public function pertemuan()
+    public function pertemuan(Request $request)
     {
-        $pertemuan = DB::table('pertemuan')->orderBy('nama_pertemuan')->get();
+        $id = $request->id;
+        $pertemuan = DB::table('pertemuan')
+        ->where('matkul_id', $id)
+        ->orderBy('id')
+        ->get();
         return view('kuliah.pertemuan', compact('pertemuan'));
     }
 

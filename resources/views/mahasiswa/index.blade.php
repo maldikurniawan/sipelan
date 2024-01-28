@@ -6,7 +6,7 @@
                 <div class="col">
                     <!-- Page pre-title -->
                     <h2 class="page-title">
-                        Data Dosen
+                        Data Mahasiswa
                     </h2>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <a href="#" class="btn btn-primary" id="tambahDosen">
+                                    <a href="#" class="btn btn-primary" id="tambahmahasiswa">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus"
                                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                             stroke="currentColor" fill="none" stroke-linecap="round"
@@ -50,12 +50,12 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-12">
-                                    <form action="/dosen" method="GET">
+                                    <form action="/mahasiswa" method="GET">
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <input type="text" name="name" value="{{ Request('name') }}"
-                                                        class="form-control" placeholder="Nama Dosen">
+                                                        class="form-control" placeholder="Nama Mahasiswa">
                                                 </div>
                                             </div>
                                             <div class="col-2">
@@ -84,23 +84,23 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>NIP</th>
+                                                <th>NPM</th>
                                                 <th>Nama</th>
-                                                <th>No. HP</th>
+                                                <th>Angkatan</th>
                                                 <th>Foto</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($dosen as $d)
+                                            @foreach ($mahasiswa as $d)
                                                 @php
-                                                    $path = Storage::url('uploads/dosen/' . $d->foto);
+                                                    $path = Storage::url('uploads/mahasiswa/' . $d->foto);
                                                 @endphp
                                                 <tr>
-                                                    <td>{{ $loop->iteration + $dosen->firstItem() - 1 }}</td>
-                                                    <td>{{ $d->nip }}</td>
+                                                    <td>{{ $loop->iteration + $mahasiswa->firstItem() - 1 }}</td>
+                                                    <td>{{ $d->npm }}</td>
                                                     <td>{{ $d->name }}</td>
-                                                    <td>{{ $d->no_hp }}</td>
+                                                    <td>{{ $d->angkatan }}</td>
                                                     <td>
                                                         @if (empty($d->foto))
                                                             <img src="{{ asset('assets/img/nophoto.jpg') }}" class="avatar"
@@ -111,7 +111,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="btn-group">
-                                                            <form action="/dosen/{{ $d->id }}/delete"
+                                                            <form action="/mahasiswa/{{ $d->id }}/delete"
                                                                 style="margin-left:5px" method="POST">
                                                                 @csrf
                                                                 <a href="#" class="edit btn btn-warning btn-sm"
@@ -156,7 +156,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{ $dosen->links('vendor.pagination.bootstrap-5') }}
+                                    {{ $mahasiswa->links('vendor.pagination.bootstrap-5') }}
                                 </div>
                             </div>
 
@@ -167,15 +167,15 @@
         </div>
     </div>
     {{-- Modal Store --}}
-    <div class="modal modal-blur fade" id="modal-inputdosen" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal modal-blur fade" id="modal-inputmahasiswa" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Dosen</h5>
+                    <h5 class="modal-title">Tambah Data Mahasiswa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/dosen/store" method="POST" id="frmsiswa" enctype="multipart/form-data">
+                    <form action="/mahasiswa/store" method="POST" id="frmsiswa" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -196,8 +196,8 @@
                                             <path d="M19 11l0 2" />
                                         </svg>
                                     </span>
-                                    <input type="text" value="" id="nip" name="nip"
-                                        class="form-control" placeholder="NIP">
+                                    <input type="text" value="" id="npm" name="npm"
+                                        class="form-control" placeholder="NPM">
                                 </div>
                             </div>
                         </div>
@@ -220,44 +220,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <div class="input-icon mb-3">
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail"
-                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-                                            <path d="M3 7l9 6l9 -6" />
-                                        </svg>
-                                    </span>
-                                    <input type="email" value="" id="email" name="email"
-                                        class="form-control" placeholder="Email">
-                                </div>
+                                <select name="angkatan_id" id="angkatan_id" class="form-select">
+                                    <option value="" hidden>Angkatan</option>
+                                    @foreach ($angkatan as $d)
+                                        <option {{ Request('angkatan_id') == $d->angkatan_id ? 'selected' : '' }}
+                                            value="{{ $d->angkatan_id }}">{{ $d->angkatan }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="input-icon mb-3">
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-device-mobile" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path
-                                                d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z" />
-                                            <path d="M11 4h2" />
-                                            <path d="M12 17v.01" />
-                                        </svg>
-                                    </span>
-                                    <input type="text" value="" id="no_hp" name="no_hp"
-                                        class="form-control" placeholder="No. HP">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
+                        <div class="row mt-3">
                             <div class="col-12">
                                 <input type="file" name="foto" class="form-control">
                             </div>
@@ -287,11 +259,11 @@
     </div>
 
     {{-- Modal Edit --}}
-    <div class="modal modal-blur fade" id="modal-editdosen" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal modal-blur fade" id="modal-editmahasiswa" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Data Dosen</h5>
+                    <h5 class="modal-title">Edit Data Mahasiswa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="loadeditform">
@@ -306,15 +278,15 @@
 @push('myscript')
     <script>
         $(function() {
-            $("#tambahDosen").click(function() {
-                $("#modal-inputdosen").modal("show");
+            $("#tambahmahasiswa").click(function() {
+                $("#modal-inputmahasiswa").modal("show");
             });
 
             $(".edit").click(function() {
                 var id = $(this).attr('id');
                 $.ajax({
                     type: 'POST',
-                    url: '/dosen/edit',
+                    url: '/mahasiswa/edit',
                     cache: false,
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -324,7 +296,7 @@
                         $("#loadeditform").html(respond);
                     }
                 });
-                $("#modal-editdosen").modal("show");
+                $("#modal-editmahasiswa").modal("show");
             });
 
             $(".delete-confirm").click(function(e) {
@@ -351,18 +323,18 @@
             });
 
             $("#frmsiswa").submit(function() {
-                var nip = $("#nip").val();
+                var npm = $("#npm").val();
                 var name = $("#name").val();
-                var no_hp = $("#no_hp").val();
-                if (nip == "") {
-                    // alert('nip Harus Diisi!');
+                var angkatan_id = $("#angkatan_id").val();
+                if (npm == "") {
+                    // alert('npm Harus Diisi!');
                     Swal.fire({
                         title: 'Warning!',
-                        text: 'NIP Harus Diisi!',
+                        text: 'NPM Harus Diisi!',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
-                    $("#nip").focus();
+                    $("#npm").focus();
                     return false;
                 } else if (name == "") {
                     Swal.fire({
@@ -373,23 +345,14 @@
                     })
                     $("#name").focus();
                     return false;
-                } else if (email == "") {
+                } else if (angkatan_id == "") {
                     Swal.fire({
                         title: 'Warning!',
-                        text: 'Email Harus Diisi!',
+                        text: 'Angkatan Harus Diisi!',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
-                    $("#email").focus();
-                    return false;
-                } else if (no_hp == "") {
-                    Swal.fire({
-                        title: 'Warning!',
-                        text: 'No HP Harus Diisi!',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                    $("#no_hp").focus();
+                    $("#angkatan_id").focus();
                     return false;
                 }
             });

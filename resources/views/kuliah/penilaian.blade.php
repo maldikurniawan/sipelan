@@ -35,5 +35,13 @@
                 <ion-icon name="document-outline"></ion-icon>
                 Rekap
             </a>
+            {{-- <a href="#" class="btn btn-primary w-100">
+                <ion-icon name="document-outline"></ion-icon>
+                UTS
+            </a>
+            <a href="#" class="btn btn-primary w-100">
+                <ion-icon name="document-outline"></ion-icon>
+                UAS
+            </a> --}}
         </div>
     </div>

@@ -22,7 +22,7 @@
                             <ion-icon name="time"></ion-icon>
                         </div>
                         <div class="col-10" style="margin-top: 5px">
-                            <h3>Waktu</h3>
+                            <h3>Hari dan Jam</h3>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -35,14 +35,9 @@
                     </div>
                 </div>
             </div>
-            <h3 style="text-align: center">DAFTAR PERTEMUAN</h3>
+            <h3 class="mt-4" style="text-align: center">DAFTAR PERTEMUAN</h3>
             @foreach ($pertemuan as $d)
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <a href="/pertemuan/{{ $d->id }}/detail"
-                            class="btn btn-primary w-100">{{ $d->nama_pertemuan }}</a>
-                    </div>
-                </div>
+                <a href="/pertemuan/{{ $d->id }}/detail" class="btn btn-primary w-100 mb-2">{{ $d->nama_pertemuan }}</a>
             @endforeach
         </div>
     </div>

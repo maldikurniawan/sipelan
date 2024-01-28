@@ -22,7 +22,7 @@
                             <ion-icon name="time"></ion-icon>
                         </div>
                         <div class="col-10" style="margin-top: 5px">
-                            <h3>Tanggal Dan Waktu</h3>
+                            <h3>Tanggal</h3>
                         </div>
                     </div>
                 </div>

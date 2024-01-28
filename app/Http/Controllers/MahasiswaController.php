@@ -2,57 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-class DosenController extends Controller
+
+class MahasiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        $query = User::query();
-        $query->select('users.*');
+        $query = Mahasiswa::query();
+        $query->select('mahasiswa.*','angkatan');
+        $query->join('angkatan','mahasiswa.angkatan_id','=','angkatan.angkatan_id');
         $query->orderBy('name');
         if (!empty($request->name)) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }
-        $dosen = $query->paginate(5);
-        return view('dosen.index', compact('dosen'));
+        $mahasiswa = $query->paginate(5);
+        $angkatan = DB::table('angkatan')->get();
+        return view('mahasiswa.index', compact('mahasiswa','angkatan'));
     }
 
     public function store(Request $request)
     {
         $id = $request->id;
-        $nip = $request->nip;
+        $npm = $request->npm;
         $name = $request->name;
-        $email = $request->email;
-        $no_hp = $request->no_hp;
-        $password = Hash::make('test1234');
-        // $users = DB::table('users')->where('id', $id)->first();
+        $angkatan_id = $request->angkatan_id;
+        // $mahasiswa = DB::table('mahasiswa')->where('id', $id)->first();
         if ($request->hasFile('foto')) {
-            $foto = $nip . "." . $request->file('foto')->getClientOriginalExtension();
+            $foto = $npm . "." . $request->file('foto')->getClientOriginalExtension();
         } else {
             $foto = null;
         }
 
         try {
             $data = [
-                'nip' => $nip,
+                'npm' => $npm,
                 'name' => $name,
-                'email' => $email,
-                'no_hp' => $no_hp,
-                'password' => $password,
+                'angkatan_id' => $angkatan_id,
                 'foto' => $foto
             ];
-            $simpan = DB::table('users')->insert($data);
+            $simpan = DB::table('mahasiswa')->insert($data);
             if ($simpan) {
                 if ($request->hasFile('foto')) {
-                    $folderPath = "public/uploads/dosen/";
+                    $folderPath = "public/uploads/mahasiswa/";
                     $request->file('foto')->storeAs($folderPath, $foto);
                 }
                 return Redirect::back()->with(['success' => 'Data Berhasil Disimpan']);
@@ -69,37 +64,36 @@ class DosenController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $users = DB::table('users')->where('id', $id)->first();
-        return view('dosen.edit', compact('users'));
+        $angkatan = DB::table('angkatan')->get();
+        $mahasiswa = DB::table('mahasiswa')->where('id', $id)->first();
+        return view('mahasiswa.edit', compact('mahasiswa','angkatan'));
     }
 
     public function update($id, Request $request)
     {
         $id = $request->id;
-        $nip = $request->nip;
+        $npm = $request->npm;
         $name = $request->name;
-        $email = $request->email;
-        $no_hp = $request->no_hp;
+        $angkatan_id = $request->angkatan_id;
         $old_foto = $request->old_foto;
         if ($request->hasFile('foto')) {
-            $foto = $nip . "." . $request->file('foto')->getClientOriginalExtension();
+            $foto = $npm . "." . $request->file('foto')->getClientOriginalExtension();
         } else {
             $foto = $old_foto;
         }
 
         try {
             $data = [
-                'nip' => $nip,
+                'npm' => $npm,
                 'name' => $name,
-                'email' => $email,
-                'no_hp' => $no_hp,
+                'angkatan_id' => $angkatan_id,
                 'foto' => $foto
             ];
-            $update = DB::table('users')->where('id', $id)->update($data);
+            $update = DB::table('mahasiswa')->where('id', $id)->update($data);
             if ($update) {
                 if ($request->hasFile('foto')) {
-                    $folderPath = "public/uploads/dosen/";
-                    $folderPathOld = "public/uploads/dosen/" . $old_foto;
+                    $folderPath = "public/uploads/mahasiswa/";
+                    $folderPathOld = "public/uploads/mahasiswa/" . $old_foto;
                     Storage::delete($folderPathOld);
                     $request->file('foto')->storeAs($folderPath, $foto);
                 }
@@ -113,7 +107,7 @@ class DosenController extends Controller
 
     public function delete($id)
     {
-        $delete = DB::table('users')->where('id', $id)->delete();
+        $delete = DB::table('mahasiswa')->where('id', $id)->delete();
         if ($delete) {
             return Redirect::back()->with(['success' => 'Data Berhasil Dihapus']);
         } else {

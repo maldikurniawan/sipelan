@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuliahController;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +59,13 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/dosen/edit', [DosenController::class, 'edit']);
     Route::post('/dosen/{id}/update', [DosenController::class, 'update']);
     Route::post('/dosen/{id}/delete', [DosenController::class, 'delete']);
+
+    // Mahasiswa
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+    Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
+    Route::post('/mahasiswa/edit', [MahasiswaController::class, 'edit']);
+    Route::post('/mahasiswa/{id}/update', [MahasiswaController::class, 'update']);
+    Route::post('/mahasiswa/{id}/delete', [MahasiswaController::class, 'delete']);
 });
 
 Auth::routes();
