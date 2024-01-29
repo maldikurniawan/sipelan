@@ -9,7 +9,7 @@
                             target="_blank" class="link-secondary">LinkedIn</a></li>
                     <li class="list-inline-item"><a href="https://github.com/maldikurniawan" target="_blank"
                             class="link-secondary">GitHub</a></li>
-                    <li class="list-inline-item"><a href="https://github.com/maldikurniawan/siasma" target="_blank"
+                    <li class="list-inline-item"><a href="https://github.com/maldikurniawan/sipelan" target="_blank"
                             class="link-secondary" rel="noopener">Source code</a></li>
                 </ul>
             </div>

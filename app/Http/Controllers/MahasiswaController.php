@@ -13,15 +13,15 @@ class MahasiswaController extends Controller
     public function index(Request $request)
     {
         $query = Mahasiswa::query();
-        $query->select('mahasiswa.*','angkatan');
-        $query->join('angkatan','mahasiswa.angkatan_id','=','angkatan.angkatan_id');
+        $query->select('mahasiswa.*', 'angkatan');
+        $query->join('angkatan', 'mahasiswa.angkatan_id', '=', 'angkatan.angkatan_id');
         $query->orderBy('name');
         if (!empty($request->name)) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }
         $mahasiswa = $query->paginate(5);
         $angkatan = DB::table('angkatan')->get();
-        return view('mahasiswa.index', compact('mahasiswa','angkatan'));
+        return view('mahasiswa.index', compact('mahasiswa', 'angkatan'));
     }
 
     public function store(Request $request)
@@ -66,7 +66,7 @@ class MahasiswaController extends Controller
         $id = $request->id;
         $angkatan = DB::table('angkatan')->get();
         $mahasiswa = DB::table('mahasiswa')->where('id', $id)->first();
-        return view('mahasiswa.edit', compact('mahasiswa','angkatan'));
+        return view('mahasiswa.edit', compact('mahasiswa', 'angkatan'));
     }
 
     public function update($id, Request $request)

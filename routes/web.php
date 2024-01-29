@@ -6,6 +6,8 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuliahController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MatkulmasterController;
+use App\Http\Controllers\PertemuanmasterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,6 +68,20 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/mahasiswa/edit', [MahasiswaController::class, 'edit']);
     Route::post('/mahasiswa/{id}/update', [MahasiswaController::class, 'update']);
     Route::post('/mahasiswa/{id}/delete', [MahasiswaController::class, 'delete']);
+
+    // Matkul
+    Route::get('/matkulmaster', [MatkulmasterController::class, 'index']);
+    Route::post('/matkulmaster/store', [MatkulmasterController::class, 'store']);
+    Route::post('/matkulmaster/edit', [MatkulmasterController::class, 'edit']);
+    Route::post('/matkulmaster/{id}/update', [MatkulmasterController::class, 'update']);
+    Route::post('/matkulmaster/{id}/delete', [MatkulmasterController::class, 'delete']);
+
+    // Pertemuan
+    Route::get('/pertemuanmaster', [PertemuanmasterController::class, 'index']);
+    Route::post('/pertemuanmaster/store', [PertemuanmasterController::class, 'store']);
+    Route::post('/pertemuanmaster/edit', [PertemuanmasterController::class, 'edit']);
+    Route::post('/pertemuanmaster/{id}/update', [PertemuanmasterController::class, 'update']);
+    Route::post('/pertemuanmaster/{id}/delete', [PertemuanmasterController::class, 'delete']);
 });
 
 Auth::routes();
