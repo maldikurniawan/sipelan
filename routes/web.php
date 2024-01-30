@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuliahController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulmasterController;
+use App\Http\Controllers\ModulmasterController;
 use App\Http\Controllers\PertemuanmasterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +83,13 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/pertemuanmaster/edit', [PertemuanmasterController::class, 'edit']);
     Route::post('/pertemuanmaster/{id}/update', [PertemuanmasterController::class, 'update']);
     Route::post('/pertemuanmaster/{id}/delete', [PertemuanmasterController::class, 'delete']);
+
+    // Pertemuan
+    Route::get('/modulmaster', [ModulmasterController::class, 'index']);
+    Route::post('/modulmaster/store', [ModulmasterController::class, 'store']);
+    Route::post('/modulmaster/edit', [ModulmasterController::class, 'edit']);
+    Route::post('/modulmaster/{id}/update', [ModulmasterController::class, 'update']);
+    Route::post('/modulmaster/{id}/delete', [ModulmasterController::class, 'delete']);
 });
 
 Auth::routes();

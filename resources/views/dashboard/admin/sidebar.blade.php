@@ -138,6 +138,9 @@
                                 <a class="dropdown-item" href="/pertemuanmaster">
                                     Pertemuan
                                 </a>
+                                <a class="dropdown-item" href="/modulmaster">
+                                    Modul
+                                </a>
                             </div>
                         </div>
                     </div>
