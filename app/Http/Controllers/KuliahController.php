@@ -77,15 +77,16 @@ class KuliahController extends Controller
     {
         $id = $request->id;
         $pertemuan = DB::table('pertemuan')
-        ->where('matkul_id', $id)
-        ->orderBy('id')
-        ->get();
+            ->where('matkul_id', $id)
+            ->orderBy('id')
+            ->get();
         return view('kuliah.pertemuan', compact('pertemuan'));
     }
 
     public function detail()
     {
-        return view('kuliah.detail');
+        $hariini = date("Y-m-d");
+        return view('kuliah.detail', compact('hariini'));
     }
 
     public function modul()

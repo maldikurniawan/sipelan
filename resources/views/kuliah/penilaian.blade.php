@@ -3,7 +3,7 @@
     <!-- App Header -->
     <div class="appHeader bg-primary text-light">
         <div class="left">
-            <a href="/matkul" class="headerButton goBack">
+            <a href="{{ url()->previous() }}" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
         </div>
@@ -24,24 +24,16 @@
                 Keaktifan
             </a>
             <a href="#" class="btn btn-primary w-100 mb-2">
-                <ion-icon name="clipboard-outline"></ion-icon>
+                <ion-icon name="pencil-outline"></ion-icon>
                 Kuis
             </a>
             <a href="#" class="btn btn-primary w-100 mb-2">
-                <ion-icon name="list-outline"></ion-icon>
+                <ion-icon name="list-circle-outline"></ion-icon>
                 Tugas
             </a>
             <a href="#" class="btn btn-primary w-100">
                 <ion-icon name="document-outline"></ion-icon>
                 Rekap
             </a>
-            {{-- <a href="#" class="btn btn-primary w-100">
-                <ion-icon name="document-outline"></ion-icon>
-                UTS
-            </a>
-            <a href="#" class="btn btn-primary w-100">
-                <ion-icon name="document-outline"></ion-icon>
-                UAS
-            </a> --}}
         </div>
     </div>

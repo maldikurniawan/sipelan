@@ -3,7 +3,7 @@
     <!-- App Header -->
     <div class="appHeader bg-primary text-light">
         <div class="left">
-            <a href="/matkul" class="headerButton goBack">
+            <a href="{{ url()->previous() }}" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
         </div>
@@ -22,7 +22,7 @@
                             <ion-icon name="time"></ion-icon>
                         </div>
                         <div class="col-10" style="margin-top: 5px">
-                            <h3>Tanggal</h3>
+                            <h3>{{ date('d-m-Y', strtotime($hariini)) }}</h3>
                         </div>
                     </div>
                 </div>

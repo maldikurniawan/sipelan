@@ -21,9 +21,9 @@
     </a>
     <a href="#" class="item {{ request()->is('presensi/izin') ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="document-outline" role="img" class="md hydrated"
-                aria-label="document-outline"></ion-icon>
-            <strong>Rekap</strong>
+            <ion-icon name="call-outline" role="img" class="md hydrated"
+                aria-label="call-outline"></ion-icon>
+            <strong>Kontak</strong>
         </div>
     </a>
     <a href="/editProfile" class="item {{ request()->is('editProfile') ? 'active' : '' }}">
