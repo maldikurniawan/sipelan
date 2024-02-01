@@ -15,11 +15,11 @@
 @section('content')
     <div class="row" style="margin-top:70px">
         <div class="col">
-            <a href="#" class="btn btn-primary w-100 mt-2 mb-2">
-                Pengantar TI
-            </a>
-            <a href="#" class="btn btn-primary w-100">
-                Materi Pertama
-            </a>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h3>{{ $modul->judul_modul }}</h3>
+                    <p>{{ $modul->deskripsi }}</p>
+                </div>
+            </div>
         </div>
     </div>

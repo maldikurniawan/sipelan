@@ -80,22 +80,72 @@ class KuliahController extends Controller
             ->where('matkul_id', $id)
             ->orderBy('id')
             ->get();
-        return view('kuliah.pertemuan', compact('pertemuan'));
+
+        $waktupertemuan = DB::table('pertemuan')
+            ->leftJoin('matkul', 'pertemuan.matkul_id', '=', 'matkul.id')
+            ->select('hari_matkul', 'jam_matkul', 'lokasi_matkul')
+            ->first();
+        return view('kuliah.pertemuan', compact('pertemuan', 'waktupertemuan'));
     }
 
-    public function detail()
+    public function detail(Request $request)
     {
         $hariini = date("Y-m-d");
-        return view('kuliah.detail', compact('hariini'));
+        $id = $request->id;
+        $detailpertemuan = DB::table('pertemuan')
+            ->leftJoin('matkul', 'pertemuan.matkul_id', '=', 'matkul.id')
+            ->select('tgl_pertemuan')
+            ->first();
+        return view('kuliah.detail', compact('detailpertemuan', 'hariini'));
     }
 
-    public function modul()
+    public function modul(Request $request)
     {
-        return view('kuliah.modul');
+        $id = $request->id;
+        $modul = DB::table('modul')
+            ->select('judul_modul', 'deskripsi')
+            ->first();
+        return view('kuliah.modul', compact('modul'));
     }
 
     public function penilaian()
     {
         return view('kuliah.penilaian');
+    }
+
+    public function keaktifan(Request $request)
+    {
+        $id = $request->id;
+        $keaktifan = DB::table('keaktifan')
+            ->join('matkul', 'keaktifan.matkul_id', '=', 'matkul.id')
+            ->join('pertemuan', 'keaktifan.pertemuan_id', '=', 'pertemuan.id')
+            ->join('mahasiswa', 'keaktifan.mahasiswa_id', '=', 'mahasiswa.id')
+            ->orderBy('name')
+            ->get();
+        return view('kuliah.keaktifan', compact('keaktifan'));
+    }
+
+    public function kuis(Request $request)
+    {
+        $id = $request->id;
+        $kuis = DB::table('kuis')
+            ->join('matkul', 'kuis.matkul_id', '=', 'matkul.id')
+            ->join('pertemuan', 'kuis.pertemuan_id', '=', 'pertemuan.id')
+            ->join('mahasiswa', 'kuis.mahasiswa_id', '=', 'mahasiswa.id')
+            ->orderBy('name')
+            ->get();
+        return view('kuliah.kuis', compact('kuis'));
+    }
+
+    public function tugas(Request $request)
+    {
+        $id = $request->id;
+        $tugas = DB::table('tugas')
+            ->join('matkul', 'tugas.matkul_id', '=', 'matkul.id')
+            ->join('pertemuan', 'tugas.pertemuan_id', '=', 'pertemuan.id')
+            ->join('mahasiswa', 'tugas.mahasiswa_id', '=', 'mahasiswa.id')
+            ->orderBy('name')
+            ->get();
+        return view('kuliah.tugas', compact('tugas'));
     }
 }

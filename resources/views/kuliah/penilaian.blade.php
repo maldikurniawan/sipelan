@@ -19,15 +19,15 @@
                 <ion-icon name="checkmark-done-outline"></ion-icon>
                 Absensi
             </a>
-            <a href="#" class="btn btn-primary w-100 mb-2">
+            <a href="/keaktifan" class="btn btn-primary w-100 mb-2">
                 <ion-icon name="people-outline"></ion-icon>
                 Keaktifan
             </a>
-            <a href="#" class="btn btn-primary w-100 mb-2">
+            <a href="/kuis" class="btn btn-primary w-100 mb-2">
                 <ion-icon name="pencil-outline"></ion-icon>
                 Kuis
             </a>
-            <a href="#" class="btn btn-primary w-100 mb-2">
+            <a href="/tugas" class="btn btn-primary w-100 mb-2">
                 <ion-icon name="list-circle-outline"></ion-icon>
                 Tugas
             </a>

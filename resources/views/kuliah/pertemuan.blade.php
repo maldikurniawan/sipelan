@@ -22,7 +22,8 @@
                             <ion-icon name="time"></ion-icon>
                         </div>
                         <div class="col-10" style="margin-top: 5px">
-                            <h3>Hari dan Jam</h3>
+                            <h3>{{ $waktupertemuan->hari_matkul }},
+                                {{ date('H:i', strtotime($waktupertemuan->jam_matkul)) }} WIB</h3>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -30,7 +31,7 @@
                             <ion-icon name="location"></ion-icon>
                         </div>
                         <div class="col-10" style="margin-top: 5px">
-                            <h3>Lokasi</h3>
+                            <h3>{{ $waktupertemuan->lokasi_matkul }}</h3>
                         </div>
                     </div>
                 </div>
