@@ -125,6 +125,32 @@ class KuliahController extends Controller
         return view('kuliah.keaktifan', compact('keaktifan'));
     }
 
+    public function editkeaktifan($id)
+    {
+        $dataaktif = DB::table('keaktifan')
+            ->where('id', $id)
+            ->first();
+        return view('kuliah.editkeaktifan', compact('dataaktif'));
+    }
+
+    public function updatekeaktifan($id, Request $request)
+    {
+        $nilai_keaktifan = $request->nilai_keaktifan;
+        if ($nilai_keaktifan >= 0 && $nilai_keaktifan <= 100) {
+            try {
+                $data = [
+                    'nilai_keaktifan' => $nilai_keaktifan
+                ];
+                DB::table('keaktifan')->where('id', $id)->update($data);
+                return redirect('keaktifan')->with(['success' => 'Data Berhasil Disimpan']);
+            } catch (\Throwable $e) {
+                return redirect('keaktifan')->with(['success' => 'Data Gagal Disimpan']);
+            }
+        }else{
+            return redirect('keaktifan')->with(['success' => 'Input Angka 0-100']);
+        }
+    }
+
     public function kuis(Request $request)
     {
         $id = $request->id;
