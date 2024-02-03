@@ -9,6 +9,9 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulmasterController;
 use App\Http\Controllers\ModulmasterController;
 use App\Http\Controllers\PertemuanmasterController;
+use App\Http\Controllers\KeaktifanmasterController;
+use App\Http\Controllers\KuismasterController;
+use App\Http\Controllers\TugasmasterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -107,7 +110,25 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/modulmaster/{id}/delete', [ModulmasterController::class, 'delete']);
 
     // Keaktifan
-    // Route::get('/keaktifanmaster', [PenilaianController::class, 'keaktifanmaster']);
+    Route::get('/keaktifanmaster', [KeaktifanmasterController::class, 'index']);
+    Route::post('/keaktifanmaster/store', [KeaktifanmasterController::class, 'store']);
+    Route::post('/keaktifanmaster/edit', [KeaktifanmasterController::class, 'edit']);
+    Route::post('/keaktifanmaster/{id}/update', [KeaktifanmasterController::class, 'update']);
+    Route::post('/keaktifanmaster/{id}/delete', [KeaktifanmasterController::class, 'delete']);
+
+    // Kuis
+    Route::get('/kuismaster', [KuismasterController::class, 'index']);
+    Route::post('/kuismaster/store', [KuismasterController::class, 'store']);
+    Route::post('/kuismaster/edit', [KuismasterController::class, 'edit']);
+    Route::post('/kuismaster/{id}/update', [KuismasterController::class, 'update']);
+    Route::post('/kuismaster/{id}/delete', [KuismasterController::class, 'delete']);
+
+    // Tugas
+    Route::get('/tugasmaster', [TugasmasterController::class, 'index']);
+    Route::post('/tugasmaster/store', [TugasmasterController::class, 'store']);
+    Route::post('/tugasmaster/edit', [TugasmasterController::class, 'edit']);
+    Route::post('/tugasmaster/{id}/update', [TugasmasterController::class, 'update']);
+    Route::post('/tugasmaster/{id}/delete', [TugasmasterController::class, 'delete']);
 });
 
 Auth::routes();

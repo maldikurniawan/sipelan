@@ -2,43 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pertemuanmaster;
+use App\Models\Kuismaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
-class PertemuanmasterController extends Controller
+class KuismasterController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Pertemuanmaster::query();
-        $query->select('pertemuan.*', 'nama_matkul');
-        $query->join('matkul', 'pertemuan.matkul_id', '=', 'matkul.id');
-        $query->orderBy('nama_pertemuan');
-        if (!empty($request->nama_pertemuan)) {
-            $query->where('nama_pertemuan', 'like', '%' . $request->nama_pertemuan . '%');
-        }
+        $query = Kuismaster::query();
+        $query->select('kuis.*', 'nama_matkul', 'nama_pertemuan', 'name');
+        $query->join('matkul', 'kuis.matkul_id', '=', 'matkul.id');
+        $query->join('pertemuan', 'kuis.pertemuan_id', '=', 'pertemuan.id');
+        $query->join('mahasiswa', 'kuis.mahasiswa_id', '=', 'mahasiswa.id');
+        $query->orderBy('id');
         if (!empty($request->matkul_id)) {
-            $query->where('pertemuan.matkul_id', $request->matkul_id);
+            $query->where('kuis.matkul_id', $request->matkul_id);
         }
-        $pertemuanmaster = $query->paginate(5);
+        if (!empty($request->mahasiswa_id)) {
+            $query->where('kuis.mahasiswa_id', $request->mahasiswa_id);
+        }
+        $kuismaster = $query->paginate(5);
         $matkul = DB::table('matkul')->get();
-        return view('pertemuanmaster.index', compact('pertemuanmaster', 'matkul'));
+        $pertemuan = DB::table('pertemuan')->get();
+        $mahasiswa = DB::table('mahasiswa')->get();
+        return view('kuismaster.index', compact('kuismaster', 'matkul', 'pertemuan', 'mahasiswa'));
     }
 
     public function store(Request $request)
     {
         $matkul_id = $request->matkul_id;
-        $nama_pertemuan = $request->nama_pertemuan;
-        $tgl_pertemuan = $request->tgl_pertemuan;
+        $pertemuan_id = $request->pertemuan_id;
+        $mahasiswa_id = $request->mahasiswa_id;
 
         try {
             $data = [
                 'matkul_id' => $matkul_id,
-                'nama_pertemuan' => $nama_pertemuan,
-                'tgl_pertemuan' => $tgl_pertemuan
+                'pertemuan_id' => $pertemuan_id,
+                'mahasiswa_id' => $mahasiswa_id
             ];
-            $simpan = DB::table('pertemuan')->insert($data);
+            $simpan = DB::table('kuis')->insert($data);
             if ($simpan) {
                 return Redirect::back()->with(['success' => 'Data Berhasil Disimpan']);
             }
@@ -55,24 +59,26 @@ class PertemuanmasterController extends Controller
     {
         $id = $request->id;
         $matkul = DB::table('matkul')->get();
-        $pertemuanmaster = DB::table('pertemuan')->where('id', $id)->first();
-        return view('pertemuanmaster.edit', compact('pertemuanmaster', 'matkul'));
+        $pertemuan = DB::table('pertemuan')->get();
+        $mahasiswa = DB::table('mahasiswa')->get();
+        $kuismaster = DB::table('kuis')->where('id', $id)->first();
+        return view('kuismaster.edit', compact('kuismaster', 'matkul', 'pertemuan', 'mahasiswa'));
     }
 
     public function update($id, Request $request)
     {
         $id = $request->id;
         $matkul_id = $request->matkul_id;
-        $nama_pertemuan = $request->nama_pertemuan;
-        $tgl_pertemuan = $request->tgl_pertemuan;
+        $pertemuan_id = $request->pertemuan_id;
+        $mahasiswa_id = $request->mahasiswa_id;
 
         try {
             $data = [
                 'matkul_id' => $matkul_id,
-                'nama_pertemuan' => $nama_pertemuan,
-                'tgl_pertemuan' => $tgl_pertemuan
+                'pertemuan_id' => $pertemuan_id,
+                'mahasiswa_id' => $mahasiswa_id
             ];
-            $update = DB::table('pertemuan')->where('id', $id)->update($data);
+            $update = DB::table('kuis')->where('id', $id)->update($data);
             if ($update) {
                 return Redirect::back()->with(['success' => 'Data Berhasil Diupdate']);
             }
@@ -84,7 +90,7 @@ class PertemuanmasterController extends Controller
 
     public function delete($id)
     {
-        $delete = DB::table('pertemuan')->where('id', $id)->delete();
+        $delete = DB::table('kuis')->where('id', $id)->delete();
         if ($delete) {
             return Redirect::back()->with(['success' => 'Data Berhasil Dihapus']);
         } else {
