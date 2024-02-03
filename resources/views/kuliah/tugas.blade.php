@@ -15,6 +15,20 @@
 @section('content')
     <div class="row" style="margin-top:70px">
         <div class="col">
+            @php
+                $messagesuccess = Session::get('success');
+                $messageerror = Session::get('error');
+            @endphp
+            @if (Session::get('success'))
+                <div class="alert alert-success">
+                    {{ $messagesuccess }}
+                </div>
+            @endif
+            @if (Session::get('error'))
+                <div class="alert alert-danger">
+                    {{ $messageerror }}
+                </div>
+            @endif
             <h3 class="mt-2" style="text-align: center">TABEL PENILAIAN</h3>
             <div class="card mb-2">
                 <div class="card-body">
@@ -34,7 +48,7 @@
                                     <td>{{ $d->name }}</td>
                                     <td>{{ $d->nilai_tugas }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm">
+                                        <a href="/tugas/{{ $d->id }}/edit" class="btn btn-primary btn-sm">
                                             <ion-icon name="pencil-outline"></ion-icon>
                                         </a>
                                     </td>

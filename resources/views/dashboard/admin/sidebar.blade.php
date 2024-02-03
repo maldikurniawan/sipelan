@@ -170,13 +170,13 @@
                                 <a class="dropdown-item" href="#">
                                     Absensi
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/keaktifanmaster">
                                     Keaktifan
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/kuismaster">
                                     Kuis
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/tugasmaster">
                                     Tugas
                                 </a>
                             </div>

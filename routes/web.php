@@ -50,13 +50,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/matkul/{matkul_id}/pertemuan/{id}/detail', [KuliahController::class, 'detail']);
     Route::get('modul', [KuliahController::class, 'modul']);
     Route::get('penilaian', [KuliahController::class, 'penilaian']);
-    Route::get('kuis', [KuliahController::class, 'kuis']);
-    Route::get('tugas', [KuliahController::class, 'tugas']);
 
     // Keaktifan
     Route::get('keaktifan', [KuliahController::class, 'keaktifan']);
     Route::get('keaktifan/{id}/edit', [KuliahController::class, 'editkeaktifan']);
     Route::post('keaktifan/{id}/update', [KuliahController::class, 'updatekeaktifan']);
+
+    // Kuis
+    Route::get('kuis', [KuliahController::class, 'kuis']);
+    Route::get('kuis/{id}/edit', [KuliahController::class, 'editkuis']);
+    Route::post('kuis/{id}/update', [KuliahController::class, 'updatekuis']);
+
+    // Tugas
+    Route::get('tugas', [KuliahController::class, 'tugas']);
+    Route::get('tugas/{id}/edit', [KuliahController::class, 'edittugas']);
+    Route::post('tugas/{id}/update', [KuliahController::class, 'updatetugas']);
 });
 
 Route::middleware(['auth:admin'])->group(function () {
@@ -91,12 +99,15 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/pertemuanmaster/{id}/update', [PertemuanmasterController::class, 'update']);
     Route::post('/pertemuanmaster/{id}/delete', [PertemuanmasterController::class, 'delete']);
 
-    // Pertemuan
+    // Modul
     Route::get('/modulmaster', [ModulmasterController::class, 'index']);
     Route::post('/modulmaster/store', [ModulmasterController::class, 'store']);
     Route::post('/modulmaster/edit', [ModulmasterController::class, 'edit']);
     Route::post('/modulmaster/{id}/update', [ModulmasterController::class, 'update']);
     Route::post('/modulmaster/{id}/delete', [ModulmasterController::class, 'delete']);
+
+    // Keaktifan
+    // Route::get('/keaktifanmaster', [PenilaianController::class, 'keaktifanmaster']);
 });
 
 Auth::routes();

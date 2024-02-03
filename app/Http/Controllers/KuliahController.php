@@ -163,6 +163,32 @@ class KuliahController extends Controller
         return view('kuliah.kuis', compact('kuis'));
     }
 
+    public function editkuis($id)
+    {
+        $datakuis = DB::table('kuis')
+            ->where('id', $id)
+            ->first();
+        return view('kuliah.editkuis', compact('datakuis'));
+    }
+
+    public function updatekuis($id, Request $request)
+    {
+        $nilai_kuis = $request->nilai_kuis;
+        if ($nilai_kuis >= 0 && $nilai_kuis <= 100) {
+            try {
+                $data = [
+                    'nilai_kuis' => $nilai_kuis
+                ];
+                DB::table('kuis')->where('id', $id)->update($data);
+                return redirect('kuis')->with(['success' => 'Data Berhasil Disimpan']);
+            } catch (\Throwable $e) {
+                return redirect('kuis')->with(['success' => 'Data Gagal Disimpan']);
+            }
+        }else{
+            return redirect('kuis')->with(['success' => 'Input Angka 0-100']);
+        }
+    }
+
     public function tugas(Request $request)
     {
         $id = $request->id;
@@ -173,5 +199,31 @@ class KuliahController extends Controller
             ->orderBy('name')
             ->get();
         return view('kuliah.tugas', compact('tugas'));
+    }
+
+    public function edittugas($id)
+    {
+        $datatugas = DB::table('tugas')
+            ->where('id', $id)
+            ->first();
+        return view('kuliah.edittugas', compact('datatugas'));
+    }
+
+    public function updatetugas($id, Request $request)
+    {
+        $nilai_tugas = $request->nilai_tugas;
+        if ($nilai_tugas >= 0 && $nilai_tugas <= 100) {
+            try {
+                $data = [
+                    'nilai_tugas' => $nilai_tugas
+                ];
+                DB::table('tugas')->where('id', $id)->update($data);
+                return redirect('tugas')->with(['success' => 'Data Berhasil Disimpan']);
+            } catch (\Throwable $e) {
+                return redirect('tugas')->with(['success' => 'Data Gagal Disimpan']);
+            }
+        }else{
+            return redirect('tugas')->with(['success' => 'Input Angka 0-100']);
+        }
     }
 }
