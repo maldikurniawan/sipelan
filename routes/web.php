@@ -45,12 +45,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Edit Profile
     Route::get('editProfile', [KuliahController::class, 'editProfile']);
-    Route::post('/kuliah/{id}/updateProfile', [KuliahController::class, 'updateProfile']);
+    Route::post('kuliah/{id}/updateProfile', [KuliahController::class, 'updateProfile']);
 
     // Mata Kuliah
     Route::get('matkul', [KuliahController::class, 'matkul']);
-    Route::get('/matkul/{id}/pertemuan', [KuliahController::class, 'pertemuan']);
-    Route::get('/matkul/{matkul_id}/pertemuan/{id}/detail', [KuliahController::class, 'detail']);
+    Route::get('matkul/{id}/pertemuan', [KuliahController::class, 'pertemuan']);
+    Route::get('matkul/{matkul_id}/pertemuan/{id}/detail', [KuliahController::class, 'detail']);
     Route::get('modul', [KuliahController::class, 'modul']);
     Route::get('penilaian', [KuliahController::class, 'penilaian']);
 
@@ -68,6 +68,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('tugas', [KuliahController::class, 'tugas']);
     Route::get('tugas/{id}/edit', [KuliahController::class, 'edittugas']);
     Route::post('tugas/{id}/update', [KuliahController::class, 'updatetugas']);
+
+    // Absensi
+    Route::get('absensi', [KuliahController::class, 'absensi']);
+    Route::get('absensi/{id}/kamera', [KuliahController::class, 'kamera']);
+    Route::post('absensi/store', [KuliahController::class, 'store']);
 });
 
 Route::middleware(['auth:admin'])->group(function () {

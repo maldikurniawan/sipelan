@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
+use function Laravel\Prompts\alert;
+
 class KuliahController extends Controller
 {
     public function editProfile()
@@ -146,7 +148,7 @@ class KuliahController extends Controller
             } catch (\Throwable $e) {
                 return redirect('keaktifan')->with(['success' => 'Data Gagal Disimpan']);
             }
-        }else{
+        } else {
             return redirect('keaktifan')->with(['success' => 'Input Angka 0-100']);
         }
     }
@@ -184,7 +186,7 @@ class KuliahController extends Controller
             } catch (\Throwable $e) {
                 return redirect('kuis')->with(['success' => 'Data Gagal Disimpan']);
             }
-        }else{
+        } else {
             return redirect('kuis')->with(['success' => 'Input Angka 0-100']);
         }
     }
@@ -222,8 +224,55 @@ class KuliahController extends Controller
             } catch (\Throwable $e) {
                 return redirect('tugas')->with(['success' => 'Data Gagal Disimpan']);
             }
-        }else{
+        } else {
             return redirect('tugas')->with(['success' => 'Input Angka 0-100']);
+        }
+    }
+
+    public function absensi(Request $request)
+    {
+        $id = $request->id;
+        $absensi = DB::table('absensi')
+            ->join('matkul', 'absensi.matkul_id', '=', 'matkul.id')
+            ->join('pertemuan', 'absensi.pertemuan_id', '=', 'pertemuan.id')
+            ->join('mahasiswa', 'absensi.mahasiswa_id', '=', 'mahasiswa.id')
+            ->orderBy('name')
+            ->get();
+        return view('kuliah.absensi', compact('absensi'));
+    }
+
+    public function kamera($id)
+    {
+        $dataabsen = DB::table('absensi')
+            ->where('id', $id)
+            ->first();
+        return view('kuliah.kamera', compact('dataabsen'));
+    }
+
+    public function store(Request $request)
+    {
+        $id = Auth::guard()->user()->id;
+        $tgl_absensi = date("Y-m-d");
+        $jam = date("H:i:s");
+        $image = $request->image;
+        $folderPath = "public/uploads/absensi/";
+        $formatName =  $id . "-" . $tgl_absensi;
+        $image_parts = explode(";base64", $image);
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = $formatName . ".png";
+        $file = $folderPath . $fileName;
+        // Storage::put($file, $image_base64);
+        // echo "0";
+        $data = [
+            'jam_masuk' => $jam,
+            'foto_masuk' => $fileName
+        ];
+        $update = DB::table('absensi')->where('id', $id)->update($data);
+        if ($update) {
+            echo "success|Terima Kasih, Sampai Jumpa|out";
+            Storage::put($file, $image_base64);
+        } else {
+            echo "error|Maaf Gagal Absen, Silahkan Coba Lagi|out";
         }
     }
 }

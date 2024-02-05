@@ -1,10 +1,5 @@
 @extends('dashboard.index')
 @section('header')
-    <style>
-        .datepicker-modal {
-            max-height: 465px !important;
-        }
-    </style>
     <!-- App Header -->
     <div class="appHeader bg-primary text-light">
         <div class="left">

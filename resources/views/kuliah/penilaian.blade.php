@@ -15,7 +15,7 @@
 @section('content')
     <div class="row" style="margin-top:70px">
         <div class="col">
-            <a href="#" class="btn btn-primary w-100 mt-2 mb-2">
+            <a href="/absensi" class="btn btn-primary w-100 mt-2 mb-2">
                 <ion-icon name="checkmark-done-outline"></ion-icon>
                 Absensi
             </a>
