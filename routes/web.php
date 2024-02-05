@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('matkul/{matkul_id}/pertemuan/{id}/detail', [KuliahController::class, 'detail']);
     Route::get('modul', [KuliahController::class, 'modul']);
     Route::get('penilaian', [KuliahController::class, 'penilaian']);
+    Route::get('rekap', [KuliahController::class, 'rekap']);
 
     // Keaktifan
     Route::get('keaktifan', [KuliahController::class, 'keaktifan']);

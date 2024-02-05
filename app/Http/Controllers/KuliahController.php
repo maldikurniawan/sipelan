@@ -275,4 +275,11 @@ class KuliahController extends Controller
             echo "error|Maaf Gagal Absen, Silahkan Coba Lagi|out";
         }
     }
+
+    public function rekap(Request $request)
+    {
+        $id = $request->id;
+        $mahasiswa = DB::table('mahasiswa')->orderBy('name')->get();
+        return view('kuliah.rekap', compact('mahasiswa'));
+    }
 }

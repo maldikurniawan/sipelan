@@ -31,7 +31,7 @@
                 <ion-icon name="list-circle-outline"></ion-icon>
                 Tugas
             </a>
-            <a href="#" class="btn btn-primary w-100">
+            <a href="/rekap" class="btn btn-primary w-100" target="_blank">
                 <ion-icon name="document-outline"></ion-icon>
                 Rekap
             </a>
