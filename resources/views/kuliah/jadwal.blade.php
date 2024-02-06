@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Rekap Perkuliahan</title>
+    <title>Jadwal Mata Kuliah</title>
 
     <!-- Normalize or reset CSS with your favorite library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
@@ -61,7 +61,7 @@
                 </td>
                 <td>
                     <span id="title">
-                        LAPORAN PERKULIAHAN MAHASISWA<br>
+                        JADWAL PERKULIAHAN MAHASISWA<br>
                         UNIVERSITAS LAMPUNG<br>
                     </span>
                     <span>
@@ -76,23 +76,21 @@
         <table class="tabelpresensi">
             <thead>
                 <tr>
-                    <th>NPM</th>
-                    <th>Nama</th>
-                    <th>Absensi</th>
-                    <th>Kekatifan</th>
-                    <th>Kuis</th>
-                    <th>Tugas</th>
+                    <th>No</th>
+                    <th>Mata Kuliah</th>
+                    <th>Hari Kuliah</th>
+                    <th>Jam Kuliah</th>
+                    <th>Lokasi Kuliah</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($mahasiswa as $d)
+                @foreach ($matkul as $d)
                     <tr>
-                        <td>{{$d->npm}}</td>
-                        <td>{{$d->name}}</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$d->nama_matkul}}</td>
+                        <td>{{$d->hari_matkul}}</td>
+                        <td>{{date('H:i', strtotime($d->jam_matkul))}}</td>
+                        <td>{{$d->lokasi_matkul}}</td>
                     </tr>
                 @endforeach
             </tbody>

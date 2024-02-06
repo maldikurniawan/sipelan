@@ -48,7 +48,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $d->name }}</td>
-                            <td>{{ $d->nilai_keaktifan }}</td>
+                            <td>
+                                @if ($d->nilai_keaktifan != null)
+                                    {{ $d->nilai_keaktifan }}
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>
                                 <a href="/keaktifan/{{ $d->id }}/edit" class="btn btn-primary btn-sm">
                                     <ion-icon name="pencil-outline"></ion-icon>

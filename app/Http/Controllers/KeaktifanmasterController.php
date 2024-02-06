@@ -67,7 +67,6 @@ class KeaktifanmasterController extends Controller
 
     public function update($id, Request $request)
     {
-        $id = $request->id;
         $matkul_id = $request->matkul_id;
         $pertemuan_id = $request->pertemuan_id;
         $mahasiswa_id = $request->mahasiswa_id;

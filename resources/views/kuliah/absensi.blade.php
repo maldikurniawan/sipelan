@@ -52,7 +52,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $d->name }}</td>
-                            <td>{{ date('H:i', strtotime($d->jam_masuk)) }}</td>
+                            <td>
+                                @if ($d->jam_masuk != null)
+                                    {{ date('H:i', strtotime($d->jam_masuk)) }}
+                                @else
+                                    00:00
+                                @endif
+                            </td>
                             <td>
                                 @if (empty($d->foto_masuk))
                                     <img src="{{ asset('assets/img/nophoto.jpg') }}" width="30px" alt="">

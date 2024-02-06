@@ -5,7 +5,7 @@
             <strong>Home</strong>
         </div>
     </a>
-    <a href="#" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
+    <a href="/jadwal" class="item {{ request()->is('jadwal') ? 'active' : '' }}" target="_blank">
         <div class="col">
             <ion-icon name="calendar-outline" role="img" class="md hydrated"
                 aria-label="calendar-outline"></ion-icon>
@@ -19,7 +19,7 @@
             </div>
         </div>
     </a>
-    <a href="#" class="item {{ request()->is('presensi/izin') ? 'active' : '' }}">
+    <a href="/kontak" class="item {{ request()->is('kontak') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="call-outline" role="img" class="md hydrated"
                 aria-label="call-outline"></ion-icon>

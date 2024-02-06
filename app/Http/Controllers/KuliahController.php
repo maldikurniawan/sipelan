@@ -117,10 +117,8 @@ class KuliahController extends Controller
 
     public function keaktifan(Request $request)
     {
-        $id = $request->id;
         $keaktifan = DB::table('keaktifan')
-            ->join('matkul', 'keaktifan.matkul_id', '=', 'matkul.id')
-            ->join('pertemuan', 'keaktifan.pertemuan_id', '=', 'pertemuan.id')
+            ->select('keaktifan.*', 'name')
             ->join('mahasiswa', 'keaktifan.mahasiswa_id', '=', 'mahasiswa.id')
             ->orderBy('name')
             ->get();
@@ -149,7 +147,7 @@ class KuliahController extends Controller
                 return redirect('keaktifan')->with(['success' => 'Data Gagal Disimpan']);
             }
         } else {
-            return redirect('keaktifan')->with(['success' => 'Input Angka 0-100']);
+            return redirect('keaktifan')->with(['success' => 'Input Angka 0-100!']);
         }
     }
 
@@ -157,8 +155,7 @@ class KuliahController extends Controller
     {
         $id = $request->id;
         $kuis = DB::table('kuis')
-            ->join('matkul', 'kuis.matkul_id', '=', 'matkul.id')
-            ->join('pertemuan', 'kuis.pertemuan_id', '=', 'pertemuan.id')
+            ->select('kuis.*', 'name')
             ->join('mahasiswa', 'kuis.mahasiswa_id', '=', 'mahasiswa.id')
             ->orderBy('name')
             ->get();
@@ -187,7 +184,7 @@ class KuliahController extends Controller
                 return redirect('kuis')->with(['success' => 'Data Gagal Disimpan']);
             }
         } else {
-            return redirect('kuis')->with(['success' => 'Input Angka 0-100']);
+            return redirect('kuis')->with(['success' => 'Input Angka 0-100!']);
         }
     }
 
@@ -195,8 +192,7 @@ class KuliahController extends Controller
     {
         $id = $request->id;
         $tugas = DB::table('tugas')
-            ->join('matkul', 'tugas.matkul_id', '=', 'matkul.id')
-            ->join('pertemuan', 'tugas.pertemuan_id', '=', 'pertemuan.id')
+            ->select('tugas.*', 'name')
             ->join('mahasiswa', 'tugas.mahasiswa_id', '=', 'mahasiswa.id')
             ->orderBy('name')
             ->get();
@@ -225,7 +221,7 @@ class KuliahController extends Controller
                 return redirect('tugas')->with(['success' => 'Data Gagal Disimpan']);
             }
         } else {
-            return redirect('tugas')->with(['success' => 'Input Angka 0-100']);
+            return redirect('tugas')->with(['success' => 'Input Angka 0-100!']);
         }
     }
 
@@ -233,8 +229,7 @@ class KuliahController extends Controller
     {
         $id = $request->id;
         $absensi = DB::table('absensi')
-            ->join('matkul', 'absensi.matkul_id', '=', 'matkul.id')
-            ->join('pertemuan', 'absensi.pertemuan_id', '=', 'pertemuan.id')
+            ->select('absensi.*', 'name')
             ->join('mahasiswa', 'absensi.mahasiswa_id', '=', 'mahasiswa.id')
             ->orderBy('name')
             ->get();
@@ -281,5 +276,17 @@ class KuliahController extends Controller
         $id = $request->id;
         $mahasiswa = DB::table('mahasiswa')->orderBy('name')->get();
         return view('kuliah.rekap', compact('mahasiswa'));
+    }
+
+    public function kontak()
+    {
+        $dosen = DB::table('users')->orderBy('name')->get();
+        return view('kuliah.kontak', compact('dosen'));
+    }
+
+    public function jadwal()
+    {
+        $matkul = DB::table('matkul')->orderBy('nama_matkul')->get();
+        return view('kuliah.jadwal', compact('matkul'));
     }
 }

@@ -68,7 +68,7 @@
                             text: status[1],
                             icon: 'success'
                         })
-                        setTimeout("location.href='/absensi'", 3000);
+                        setTimeout("location.href='/absensi'", 2000);
                     } else {
                         Swal.fire({
                             title: 'Gagal!',

@@ -54,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('modul', [KuliahController::class, 'modul']);
     Route::get('penilaian', [KuliahController::class, 'penilaian']);
     Route::get('rekap', [KuliahController::class, 'rekap']);
+    Route::get('kontak', [KuliahController::class, 'kontak']);
+    Route::get('jadwal', [KuliahController::class, 'jadwal']);
 
     // Keaktifan
     Route::get('keaktifan', [KuliahController::class, 'keaktifan']);

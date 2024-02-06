@@ -56,7 +56,7 @@
                     </div>
                     <div class="item-menu text-center">
                         <div class="menu-icon">
-                            <a href="#" class="danger" style="font-size: 40px;">
+                            <a href="/kontak" class="danger" style="font-size: 40px;">
                                 <ion-icon name="call"></ion-icon>
                             </a>
                         </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="item-menu text-center">
                         <div class="menu-icon">
-                            <a href="#" class="warning" style="font-size: 40px;">
+                            <a href="/jadwal" class="warning" style="font-size: 40px;" target="_blank">
                                 <ion-icon name="calendar"></ion-icon>
                             </a>
                         </div>
