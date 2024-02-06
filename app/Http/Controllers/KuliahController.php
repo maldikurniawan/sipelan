@@ -259,6 +259,7 @@ class KuliahController extends Controller
         // Storage::put($file, $image_base64);
         // echo "0";
         $data = [
+            'status' => 'h',
             'jam_masuk' => $jam,
             'foto_masuk' => $fileName
         ];
@@ -273,7 +274,6 @@ class KuliahController extends Controller
 
     public function rekap(Request $request)
     {
-        $id = $request->id;
         $mahasiswa = DB::table('mahasiswa')->orderBy('name')->get();
         return view('kuliah.rekap', compact('mahasiswa'));
     }
@@ -288,5 +288,18 @@ class KuliahController extends Controller
     {
         $matkul = DB::table('matkul')->orderBy('nama_matkul')->get();
         return view('kuliah.jadwal', compact('matkul'));
+    }
+
+    public function rekapmaster()
+    {
+        $matkul = DB::table('matkul')->get();
+        $pertemuan = DB::table('pertemuan')->get();
+        return view('rekapmaster.rekapmaster', compact('matkul', 'pertemuan'));
+    }
+
+    public function cetakrekap(Request $request)
+    {
+        $mahasiswa = DB::table('mahasiswa')->orderBy('name')->get();
+        return view('kuliah.rekap', compact('mahasiswa'));
     }
 }

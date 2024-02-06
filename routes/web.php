@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensimasterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
@@ -137,6 +138,17 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/tugasmaster/edit', [TugasmasterController::class, 'edit']);
     Route::post('/tugasmaster/{id}/update', [TugasmasterController::class, 'update']);
     Route::post('/tugasmaster/{id}/delete', [TugasmasterController::class, 'delete']);
+
+    // Absensi
+    Route::get('/absensimaster', [AbsensimasterController::class, 'index']);
+    Route::post('/absensimaster/store', [AbsensimasterController::class, 'store']);
+    Route::post('/absensimaster/edit', [AbsensimasterController::class, 'edit']);
+    Route::post('/absensimaster/{id}/update', [AbsensimasterController::class, 'update']);
+    Route::post('/absensimaster/{id}/delete', [AbsensimasterController::class, 'delete']);
+
+    // Rekap
+    Route::get('rekapmaster', [KuliahController::class, 'rekapmaster']);
+    Route::get('cetakrekap', [KuliahController::class, 'cetakrekap']);
 });
 
 Auth::routes();
