@@ -79,7 +79,7 @@
                     <th>NPM</th>
                     <th>Nama</th>
                     <th>Absensi</th>
-                    <th>Kekatifan</th>
+                    <th>Keaktifan</th>
                     <th>Kuis</th>
                     <th>Tugas</th>
                 </tr>

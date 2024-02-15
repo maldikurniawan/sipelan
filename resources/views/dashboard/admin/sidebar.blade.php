@@ -198,7 +198,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Rekap Nilai
+                            Rekap
                         </span>
                     </a>
                 </li>

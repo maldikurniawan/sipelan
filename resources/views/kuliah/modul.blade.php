@@ -18,7 +18,7 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <h3>{{ $modul->judul_modul }}</h3>
-                    <p>{{ $modul->deskripsi }}</p>
+                    <p style="text-align: justify">{{ $modul->deskripsi }}</p>
                 </div>
             </div>
         </div>
