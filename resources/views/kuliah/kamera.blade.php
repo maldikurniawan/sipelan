@@ -57,7 +57,8 @@
                 url: '/absensi/store',
                 data: {
                     _token: "{{ csrf_token() }}",
-                    image: image
+                    image: image,
+                    id: {{$id}}
                 },
                 cache: false,
                 success: function(respond) {

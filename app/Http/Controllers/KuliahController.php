@@ -83,10 +83,13 @@ class KuliahController extends Controller
             ->orderBy('id')
             ->get();
 
-        $waktupertemuan = DB::table('pertemuan')
-            ->leftJoin('matkul', 'pertemuan.matkul_id', '=', 'matkul.id')
-            ->select('hari_matkul', 'jam_matkul', 'lokasi_matkul')
-            ->first();
+        // $waktupertemuan = DB::table('pertemuan')
+        //     ->leftJoin('matkul', 'pertemuan.matkul_id', '=', 'matkul.id')
+        //     ->select('hari_matkul', 'jam_matkul', 'lokasi_matkul')
+        //     ->first();
+        $waktupertemuan = DB::table('matkul')
+            ->where('id', $id)
+            ->get(['hari_matkul','jam_matkul','lokasi_matkul']);
         return view('kuliah.pertemuan', compact('pertemuan', 'waktupertemuan'));
     }
 
@@ -241,7 +244,7 @@ class KuliahController extends Controller
         $dataabsen = DB::table('absensi')
             ->where('id', $id)
             ->first();
-        return view('kuliah.kamera', compact('dataabsen'));
+        return view('kuliah.kamera', compact('dataabsen','id'));
     }
 
     public function store(Request $request)
@@ -263,7 +266,7 @@ class KuliahController extends Controller
             'jam_masuk' => $jam,
             'foto_masuk' => $fileName
         ];
-        $update = DB::table('absensi')->where('id', $id)->update($data);
+        $update = DB::table('absensi')->where('id', $request->id)->update($data);
         if ($update) {
             echo "success|Terima Kasih, Sampai Jumpa|out";
             Storage::put($file, $image_base64);
