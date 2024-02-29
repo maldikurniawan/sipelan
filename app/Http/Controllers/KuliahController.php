@@ -83,10 +83,6 @@ class KuliahController extends Controller
             ->orderBy('id')
             ->get();
 
-        // $waktupertemuan = DB::table('pertemuan')
-        //     ->leftJoin('matkul', 'pertemuan.matkul_id', '=', 'matkul.id')
-        //     ->select('hari_matkul', 'jam_matkul', 'lokasi_matkul')
-        //     ->first();
         $waktupertemuan = DB::table('matkul')
             ->where('id', $id)
             ->get(['hari_matkul','jam_matkul','lokasi_matkul']);
@@ -95,13 +91,11 @@ class KuliahController extends Controller
 
     public function detail(Request $request)
     {
-        $hariini = date("Y-m-d");
         $id = $request->id;
         $detailpertemuan = DB::table('pertemuan')
-            ->leftJoin('matkul', 'pertemuan.matkul_id', '=', 'matkul.id')
-            ->select('tgl_pertemuan')
-            ->first();
-        return view('kuliah.detail', compact('detailpertemuan', 'hariini'));
+            ->where('id', $id)
+            ->get(['tgl_pertemuan']);
+        return view('kuliah.detail', compact('detailpertemuan'));
     }
 
     public function modul(Request $request)
@@ -249,7 +243,7 @@ class KuliahController extends Controller
 
     public function store(Request $request)
     {
-        $id = Auth::guard()->user()->id;
+        $id = $request->id;
         $tgl_absensi = date("Y-m-d");
         $jam = date("H:i:s");
         $image = $request->image;
@@ -259,8 +253,6 @@ class KuliahController extends Controller
         $image_base64 = base64_decode($image_parts[1]);
         $fileName = $formatName . ".png";
         $file = $folderPath . $fileName;
-        // Storage::put($file, $image_base64);
-        // echo "0";
         $data = [
             'status' => 'h',
             'jam_masuk' => $jam,

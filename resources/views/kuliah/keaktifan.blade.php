@@ -56,7 +56,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/keaktifan/{{ $d->id }}/edit" class="btn btn-primary btn-sm">
+                                <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editkeaktifan">
                                     <ion-icon name="pencil-outline"></ion-icon>
                                 </a>
                             </td>
@@ -64,6 +64,30 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="modal fade dialogbox" id="editkeaktifan" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Keaktifan</h5>
+                </div>
+                <form method="POST" action="">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="number" class="form-control" value="" name="nilai_keaktifan"
+                                placeholder="Nilai Keaktifan" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-inline">
+                            <a href="#" class="btn btn-text-secondary" data-dismiss="modal">Batalkan</a>
+                            <a href="" class="btn btn-text-primary" id="kirimdata">Kirim</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
