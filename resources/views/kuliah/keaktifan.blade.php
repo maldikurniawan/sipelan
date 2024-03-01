@@ -56,9 +56,12 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editkeaktifan">
+                                <a href="/keaktifan/{{ $d->id }}/edit" class="btn btn-primary btn-sm">
                                     <ion-icon name="pencil-outline"></ion-icon>
                                 </a>
+                                {{-- <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editkeaktifan">
+                                    <ion-icon name="pencil-outline"></ion-icon>
+                                </a> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -66,7 +69,7 @@
             </table>
         </div>
     </div>
-    <div class="modal fade dialogbox" id="editkeaktifan" data-backdrop="static" tabindex="-1" role="dialog">
+    {{-- <div class="modal fade dialogbox" id="editkeaktifan" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,5 +92,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
