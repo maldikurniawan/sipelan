@@ -38,9 +38,9 @@
             </div>
             <h3 class="mt-4" style="text-align: center">DAFTAR PERTEMUAN</h3>
             @foreach ($pertemuan as $d)
-                @if ($d->nama_pertemuan == 'UTS')
+                @if ($d->nama_pertemuan == 'Pertemuan 8 (UTS)')
                     <a href="#" class="btn btn-danger w-100 mb-2">{{ $d->nama_pertemuan }}</a>
-                @elseif ($d->nama_pertemuan == 'UAS')
+                @elseif ($d->nama_pertemuan == 'Pertemuan 16 (UAS)')
                     <a href="#" class="btn btn-danger w-100 mb-5">{{ $d->nama_pertemuan }}</a>
                 @else
                     <a href="/matkul/{{ $d->matkul_id }}/pertemuan/{{ $d->id }}/detail"

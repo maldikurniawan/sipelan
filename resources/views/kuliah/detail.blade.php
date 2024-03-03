@@ -27,11 +27,13 @@
                     </div>
                 </div>
             </div>
-            <a href="/modul" class="btn btn-primary w-100 mb-2">
+            <a href="/matkul/{{ $modulpertemuan[0]->matkul_id }}/pertemuan/{{ $modulpertemuan[0]->pertemuan_id }}/detail/modul/{{ $modulpertemuan[0]->id }}"
+                class="btn btn-primary w-100 mb-2">
                 <ion-icon name="document-text-outline"></ion-icon>
                 Modul Pembelajaran
             </a>
-            <a href="/penilaian" class="btn btn-primary w-100">
+            <a href="/matkul/{{ $penilaian[0]->matkul_id }}/pertemuan/{{ $penilaian[0]->id }}/detail/penilaian"
+                class="btn btn-primary w-100">
                 <ion-icon name="pencil-outline"></ion-icon>
                 Penilaian Mahasiwa
             </a>

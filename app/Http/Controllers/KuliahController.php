@@ -85,7 +85,7 @@ class KuliahController extends Controller
 
         $waktupertemuan = DB::table('matkul')
             ->where('id', $id)
-            ->get(['hari_matkul','jam_matkul','lokasi_matkul']);
+            ->get(['hari_matkul', 'jam_matkul', 'lokasi_matkul']);
         return view('kuliah.pertemuan', compact('pertemuan', 'waktupertemuan'));
     }
 
@@ -95,21 +95,33 @@ class KuliahController extends Controller
         $detailpertemuan = DB::table('pertemuan')
             ->where('id', $id)
             ->get(['tgl_pertemuan']);
-        return view('kuliah.detail', compact('detailpertemuan'));
+
+        $modulpertemuan = DB::table('modul')
+            ->where('id', $id)
+            ->get(['id', 'matkul_id', 'pertemuan_id']);
+
+        $penilaian = DB::table('pertemuan')
+            ->where('id', $id)
+            ->get(['id', 'matkul_id']);
+        return view('kuliah.detail', compact('detailpertemuan', 'modulpertemuan', 'penilaian'));
     }
 
     public function modul(Request $request)
     {
         $id = $request->id;
         $modul = DB::table('modul')
-            ->select('judul_modul', 'deskripsi')
-            ->first();
+            ->where('id', $id)
+            ->get(['judul_modul', 'deskripsi']);
         return view('kuliah.modul', compact('modul'));
     }
 
-    public function penilaian()
+    public function penilaian(Request $request)
     {
-        return view('kuliah.penilaian');
+        $id = $request->id;
+        $keaktifan = DB::table('keaktifan')
+            ->where('id', $id)
+            ->get(['matkul_id', 'pertemuan_id']);
+        return view('kuliah.penilaian', compact('keaktifan'));
     }
 
     public function keaktifan(Request $request)
@@ -238,7 +250,7 @@ class KuliahController extends Controller
         $dataabsen = DB::table('absensi')
             ->where('id', $id)
             ->first();
-        return view('kuliah.kamera', compact('dataabsen','id'));
+        return view('kuliah.kamera', compact('dataabsen', 'id'));
     }
 
     public function store(Request $request)
